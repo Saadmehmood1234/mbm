@@ -124,7 +124,7 @@ export default function AdminDashboard() {
             ))}
           </TabsList>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" key="">
             <TabsContent value="bookings" className="mt-6">
               <motion.div
               key="bookings"

@@ -115,5 +115,5 @@ export function BookingsTable({ bookings }: BookingsTableProps) {
         </DialogContent>
       </Dialog>
     </div>
-  );
+  );  
 }
