@@ -10,6 +10,6 @@ export async function middleware(req: NextRequest) {
   return response;
 }
 
-// export const config = {
-//   matcher: ["/admin/:path*", "/faculty/:path*"],
-// };
+export const config = {
+  matcher: ["/admin/:path*"],
+};
