@@ -2,7 +2,17 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+/* Add to your globals.css */
+@media (min-width: 768px) {
+  .grid-md-deck {
+    margin: 0 -2rem;
+    transform: perspective(2000px) rotateX(5deg);
+  }
+  
+  .grid-md-deck > * {
+    margin: 0 -1.5rem !important;
+  }
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

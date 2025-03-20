@@ -43,7 +43,7 @@ const Nav = async () => {
           ) : (
             <UserCircle className="w-8 h-8 text-amber-400" />
           )}
-          <div className="flex items-center gap-1">
+          <div className="flex max-sm:hidden items-center gap-1">
             <span className="text-amber-400 font-medium">
               {session.user?.name || "Account"}
             </span>

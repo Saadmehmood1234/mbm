@@ -45,7 +45,7 @@ const Footer = () => {
               size="lg"
               className="bg-amber-400 hover:bg-amber-500 text-purple-900 h-16 px-12 text-lg"
             >
-              <Link href="/register">Start Planning Now</Link>
+              <Link href="/detail">Start Planning Now</Link>
             </Button>
           </motion.div>
           <motion.div variants={buttonVariants} whileHover="hover">
@@ -54,7 +54,7 @@ const Footer = () => {
               size="lg"
               className="border-white/30 hover:bg-white/10 h-16 px-12 text-lg"
             >
-              <Link href="/services">Browse Collections</Link>
+              <Link href="/detail">Browse Collections</Link>
             </Button>
           </motion.div>
         </motion.div>

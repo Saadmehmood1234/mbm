@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Users } from "lucide-react";
 import { Button } from "./Button";
 import Link from "next/link";
-import { HomeServices } from '../lib/data/HomeService';
+import { HomeServices } from "../lib/data/HomeService";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,9 +11,9 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.3
-    }
-  }
+      delayChildren: 0.3,
+    },
+  },
 };
 
 const cardVariants = {
@@ -22,22 +21,23 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 120, damping: 15 }
-  }
-};
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 }
+    transition: { type: "spring", stiffness: 120, damping: 15 },
+  },
 };
 
 const imageHoverVariants = {
-  hover: { scale: 1.05, transition: { duration: 0.4 } }
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1],
+    },
+  },
 };
 
 const SignatureServices = () => {
   return (
-    <motion.section 
+    <motion.section
       className="py-16 px-4 bg-gradient-to-b from-purple-100 to-pink-100"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -45,47 +45,50 @@ const SignatureServices = () => {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.h2 
-            className="text-3xl font-bold mb-4 font-playfair"
-            variants={fadeInUp}
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold mb-4 font-playfair"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            Signature Services
+            Signature Experiences
           </motion.h2>
-          <motion.p 
-            className="text-gray-600 max-w-2xl mx-auto"
-            variants={fadeInUp}
+          <motion.p
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore our most sought-after event solutions curated for
-            unforgettable experiences
+            Immerse yourself in our visually stunning event solutions
           </motion.p>
         </motion.div>
 
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8"
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {HomeServices.map((service, index) => (
+          {HomeServices.map((service) => (
             <motion.div
               key={service.id}
-              className="bg-white shadow-lg shadow-gray-400 border-3 border-purple-600 rounded-2xl overflow-hidden group"
+              className="group relative h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/20 cursor-pointer"
               variants={cardVariants}
-              whileHover={{ 
-                y: -10,
-                transition: { type: "spring", stiffness: 300 }
+              whileHover={{
+                scale: 1.03,
+                transition: { type: "spring", stiffness: 300 },
               }}
             >
-              <motion.div 
-                className="relative h-60"
+              <motion.div
+                className="relative h-full w-full"
                 variants={imageHoverVariants}
                 whileHover="hover"
               >
@@ -93,93 +96,39 @@ const SignatureServices = () => {
                   src={service.image}
                   alt={service.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  quality={100}
+                  priority
                 />
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-t from-purple-900/40"
-                  initial={{ opacity: 0.3 }}
-                  whileHover={{ opacity: 0.6 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 via-purple-900/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white space-y-4">
+                  <h3 className="text-3xl font-bold font-playfair drop-shadow-xl">
+                    {service.name}
+                  </h3>
 
-              <motion.div 
-                className="p-6"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: { transition: { staggerChildren: 0.1 } }
-                }}
-              >
-                <motion.h3 
-                  className="text-xl font-semibold mb-2 text-purple-900"
-                  variants={fadeInUp}
-                >
-                  {service.name}
-                </motion.h3>
-
-                <motion.div 
-                  className="flex items-center justify-between mb-4"
-                  variants={fadeInUp}
-                >
-                  <span className="text-2xl font-bold text-amber-600">
-                    ₹{service.price.toLocaleString()}
-                    <span className="text-sm text-gray-500">/day</span>
-                  </span>
-                  {service.capacity && (
-                    <motion.span 
-                      className="text-gray-600 flex items-center"
-                      whileHover={{ scale: 1.1 }}
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold bg-amber-500/90 px-4 py-1 rounded-full">
+                      ₹{service.price.toLocaleString()}
+                      <span className="text-sm ml-1">/day</span>
+                    </span>
+                    <Button
+                      asChild
+                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border border-white/30"
                     >
-                      <Users className="h-5 w-5 mr-2" />
-                      {service.capacity}+
-                    </motion.span>
-                  )}
-                </motion.div>
-
-                <motion.div 
-                  className="flex flex-wrap gap-2 mb-6"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { 
-                      opacity: 1,
-                      transition: { staggerChildren: 0.05 }
-                    }
-                  }}
-                >
-                  {service.features.map((feature, index) => (
-                    <motion.span
-                      key={index}
-                      className="px-3 py-1 bg-amber-50 text-amber-800 rounded-full text-sm"
-                      variants={{
-                        hidden: { opacity: 0, y: 10 },
-                        visible: { opacity: 1, y: 0 }
-                      }}
-                    >
-                      {feature}
-                    </motion.span>
-                  ))}
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.02 }}>
-                  <Button
-                    asChild
-                    className="w-full bg-purple-900 text-white hover:bg-purple-800 h-12 text-lg"
-                  >
-                    <Link href={`/detail`}>
-                      <motion.div className="flex items-center justify-center">
-                        Explore Options
-                        <motion.span
-                          className="ml-2"
-                          whileHover={{ x: 5 }}
-                        >
-                          →
-                        </motion.span>
-                      </motion.div>
-                    </Link>
-                  </Button>
-                </motion.div>
+                      <Link href={`/detail`}>
+                        <span className="flex items-center gap-2">
+                          Explore
+                          <span className="text-lg">→</span>
+                        </span>
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </motion.div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10" />
+                <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
+              </div>
             </motion.div>
           ))}
         </motion.div>
